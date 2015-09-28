@@ -46,14 +46,13 @@ class Operation(models.Model):
 	- `$python manage.py createsuperuser`
  	- localhost:8000/admin/
 	- codenames/admin.py
-		```
+```
 		from django.contrib import admin
 		from .models import Name
 		class NameAdmin(admin.ModelAdmin):
 			fields = ['nickname','date', ...]
 		admin.site.register(Name, NameAdmin)
-		```
-- 
+```
 
 ####Testing
 
