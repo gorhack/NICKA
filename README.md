@@ -13,7 +13,7 @@
 ####Database
 
 - [root]/[appname]/models.py
-- ```
+```
 class Operation(models.Model):
 	code_word = models.CharField(max_length=200)
 	location = models.ForeignKey(Location)
@@ -46,7 +46,7 @@ class Operation(models.Model):
 	- `$python manage.py createsuperuser`
  	- localhost:8000/admin/
 	- codenames/admin.py
-		- ```
+		```
 		from django.contrib import admin
 		from .models import Name
 		class NameAdmin(admin.ModelAdmin):
