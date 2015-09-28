@@ -5,9 +5,11 @@ from .models import Agency, Location, Operation
 
 class AgencyAdmin(admin.ModelAdmin):
 	fields=['name']
+	search_fields=['name']
 
 class LocationAdmin(admin.ModelAdmin):
 	fields=['country', 'longitude', 'latitude']
+	search_fields=['country']
 
 class OperationAdmin(admin.ModelAdmin):
 	fieldsets=[
@@ -15,6 +17,7 @@ class OperationAdmin(admin.ModelAdmin):
 		('Operation Information', {'fields':['op_num','clearance','agency','user','location'],
 									'classes':['collapse']}),
 	]
+	search_fields=['code_word','op_num']
 
 admin.site.register(Agency, AgencyAdmin)
 admin.site.register(Location, LocationAdmin)
