@@ -9,7 +9,7 @@ class AgencyAdmin(admin.ModelAdmin):
 
 class LocationAdmin(admin.ModelAdmin):
 	fields=['country', 'longitude', 'latitude']
-	search_fields=['country']
+	list_filter=['country']
 
 class OperationAdmin(admin.ModelAdmin):
 	fieldsets=[
