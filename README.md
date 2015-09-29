@@ -4,7 +4,7 @@
 
 ##Setup:
 
-####Jango Setup
+####Jango 1.8.4 Setup
 
 1. Install dependencies (`$pip install Django==1.8.4` (MySQL-Python==1.2.5, mysql-connector-python==2.0.4)
 2. cd /django-NICKA
@@ -12,7 +12,7 @@
 
 ####Database
 
-- [root]/[appname]/models.py
+- [root]/[app]/models.py
 ```
 class Operation(models.Model):
 	code_word = models.CharField(max_length=200)
@@ -29,16 +29,59 @@ class Operation(models.Model):
 	- `>from codenames.models import * `
 	
 ####Frontend
-- [simple form](https://docs.djangoproject.com/en/1.8/intro/tutorial04/)
+- [Simple form](https://docs.djangoproject.com/en/1.8/intro/tutorial04/)
 - [Styling](https://docs.djangoproject.com/en/1.8/intro/tutorial06/)
 
 ####Frontend using templates
 
-- create .html template in [root]/templates/
-- add template path to project in [project_name]/settings.py
+- admin template belongs in [project]/templates/admin/
+- each app template belongs in [project]/[app]/templates/
+- create .html file in template folder or use from "/usr/local/lib/python2.7/site-packages/django/contrib/admin/templates/"
+- add template path to project in [project]/settings.py
+```
+TEMPLATES = [{
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+        ],},},]
+```
 
+####URLs
 - [url filtering](https://docs.djangoproject.com/en/1.8/intro/tutorial03/)
+- adding views to [app]/views.py
+	```
+	from django.http import HttpResponse
+	def index_page(request):
+    	return HttpResponse("Hello, world")
+	```
+- create [app]/urls.py
+	```
+		from django.conf.urls import url
+		from . import views
 
+		urlpatterns = [
+			url(r'^$', views.index, name='index_page'),
+		]
+	```
+- edit [project]/urls.py
+	```
+	from django.conf.urls import include, url
+	from django.contrib import admin
+
+	urlpatterns = [
+	    url(r'^[app]/', include('[app].urls')),
+	    url(r'^admin/', include(admin.site.urls)),
+	]
+	```
+- now when visiting [host]:8000/[app] will display "Hello, world" from the index page in views.py
 
 ####Users
 
@@ -46,13 +89,13 @@ class Operation(models.Model):
 	- `$python manage.py createsuperuser`
  	- localhost:8000/admin/
 	- codenames/admin.py
-```
+	```
 		from django.contrib import admin
 		from .models import Name
 		class NameAdmin(admin.ModelAdmin):
 			fields = ['nickname','date', ...]
 		admin.site.register(Name, NameAdmin)
-```
+	```
 
 ####Testing
 
