@@ -2,11 +2,13 @@
 ##About:
 *[CS401 Mini-Project Capstone]* Program to Register and maintain records of code words, nicknames, reconnaissance nicknames and exercise terms and controls their use within the GCCS-T. The System validates code word, nickname and exercise term usage with assigned agencies, assigned blocks, assigned prefixes and ensures nicknames and exercise terms are not duplicated. 
 
+This repo only reaches to the extent of our sprint 1 goal and does not achieve the project goal stated above. The sprint 1 goal was to setup a test database as a foundation for the rest of the project. We decided on using Django to setup the database (in SQLite) and basic front end (HTML/CSS templates & admin control panel). 
+
 ##Setup:
 
 ####Jango 1.8.4 Setup
 
-1. Install dependencies (`$pip install Django==1.8.4` (MySQL-Python==1.2.5, mysql-connector-python==2.0.4)
+1. Install dependencies (python 2.7, pip, `$pip install Django==1.8.4`)
 2. cd /django-NICKA
 3. `$python manage.py runserver`
 
@@ -27,6 +29,7 @@ class Operation(models.Model):
 - Exploring the shell:
 	- `$python manage.py shell`
 	- `>from codenames.models import * `
+- [Model field reference](https://docs.djangoproject.com/en/1.8/ref/models/fields/#slugfield)
 	
 ####Frontend
 - [Simple form](https://docs.djangoproject.com/en/1.8/intro/tutorial04/)
@@ -53,6 +56,8 @@ TEMPLATES = [{
                 'django.contrib.messages.context_processors.messages',
         ],},},]
 ```
+- [Template design tutorial (tangowithdjango.com)](http://www.tangowithdjango.com/book/chapters/templates.html)
+- [Django Template Language](https://docs.djangoproject.com/en/1.7/topics/templates/)
 
 ####URLs
 - [url filtering](https://docs.djangoproject.com/en/1.8/intro/tutorial03/)
@@ -102,7 +107,7 @@ TEMPLATES = [{
 - [Tests](https://docs.djangoproject.com/en/1.8/intro/tutorial05/)
 
 ####Jango project creation
-
+- [Tutorial](https://docs.djangoproject.com/en/1.8/intro/tutorial01/)
 - `$django-admin.py startproject NICKA`
 - Edit NICKA/settings.py for database settings
 - `$./manage.py migrate`
@@ -113,3 +118,5 @@ TEMPLATES = [{
 	- run when making changes to models, run sqlmigrate to view sql
 - `$python manage.py sqlmigrate codenames 0001`
 	- creates the model tables in db 
+- `$python migrate`
+	- run at end of migrations
