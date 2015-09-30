@@ -17,12 +17,13 @@ class PrefixAdmin(admin.ModelAdmin):
 class OperationAdmin(admin.ModelAdmin):
 	fieldsets=[
 		(None, {'fields':['prefix', 'code_word']}),
-		('Operation Information', {'fields':['op_num','clearance','agency','user','location']}),
+		('Operation Information', {'fields':['op_num','clearance','location', 'start_date', 'end_date', 'active']}),
+		('Administration Information', {'fields': ['agency', 'user']}),
 	]
 	search_fields=['prefix','code_word','op_num']
-	list_filter=['agency', 'prefix']
+	list_filter=['agency', 'prefix', 'active']
 
 admin.site.register(Agency, AgencyAdmin)
 admin.site.register(Location, LocationAdmin)
-admin.site.register(Prefix, PrefixAdmin)
+admin.site.register(Prefix, PrefixAdmin) #TODO:// show prefix before Operation
 admin.site.register(Operation, OperationAdmin)
