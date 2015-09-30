@@ -17,11 +17,11 @@ class PrefixAdmin(admin.ModelAdmin):
 class OperationAdmin(admin.ModelAdmin):
 	fieldsets=[
 		(None, {'fields':['prefix', 'code_word']}),
-		('Operation Information', {'fields':['op_num','clearance','location', 'start_date', 'end_date', 'active']}),
+		('Operation Information', {'fields':['op_num','clearance','location', 'start_date', 'end_date', 'active', 'repeating']}),
 		('Administration Information', {'fields': ['agency', 'user']}),
 	]
 	search_fields=['prefix','code_word','op_num']
-	list_filter=['agency', 'prefix', 'active']
+	list_filter=['agency', 'prefix', 'active'] 
 
 admin.site.register(Agency, AgencyAdmin)
 admin.site.register(Location, LocationAdmin)

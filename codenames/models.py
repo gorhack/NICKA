@@ -283,8 +283,9 @@ class Operation(models.Model):
 	code_word = models.CharField(max_length=200)
 	location = models.ForeignKey(Location)
 	start_date = models.DateField()
-	end_date=models.DateField(blank=True) # TODO:// enforce end_date after start_date
+	end_date=models.DateField(null=True) # TODO:// enforce end_date after start_date
 	active=models.BooleanField(default=True) # TODO:// enforce active=False if end_date past
+	repeating=models.BooleanField(default=False) # TODO:// implement repeatable... 
 	agency = models.ForeignKey(Agency)
 	user = models.ForeignKey(User)
 	op_num = models.IntegerField()
